@@ -192,8 +192,8 @@ int leer(fstream&file, cliente clientes[max])
     cout << endl << "Direccion " << clientep.direccion;
     cout << endl << "CantHijos " << clientep.cantHijos;
     cout << endl << "Correo " << clientep.correo;
-    cout << endl << "Llegada " << clientep.horario[1];
-    cout << endl << "Salida " << clientep.horario[2];
+    cout << endl << "Llegada " << clientep.horario[0];
+    cout << endl << "Salida " << clientep.horario[1];
 
     clientes[i] = clientep;
     i++;
@@ -255,7 +255,7 @@ int leer(fstream&file, cliente clientes[max])
         file.write((char*)&clientep,sizeof(cliente));
     }
     file.close();
-    //Se retorna la cantidad de datos que ya había en el archivo + la cantidad que se agregó en esta función
+    //Se retrna la cantidad de datos que ya había en el archivo + la cantidad que se agregó en esta función
     return canti+i;
   }
 }
