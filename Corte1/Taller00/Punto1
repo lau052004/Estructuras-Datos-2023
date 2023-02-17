@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+/*
+  1.- Crear un array con 10 elementos
+  2.- Crear una función para generar números aleatorios entre 0 y 25
+  3.- Llenar el array con 10 números aleatorios
+  4.- Crear un puntero
+  5.- Imprimir el contenido del array usando el puntero
+  6.- Imprimir las direcciones del contenido del array usando el puntero.
+*/
+
+void random(int vector[10]) {
+  int randNumber;
+
+    //Semilla para que se generen los numeros aleatorios
+    srand(time(NULL));
+    
+    //Se llena el vector con numeros aleatorios
+    for(int i=0;i<10;i++)
+    {
+        randNumber=rand()%10+1;
+        vector[i]=randNumber;
+    }
+}
+
+void contenidoVector(int vector[10], int *pt) {
+  pt = &vector[0];
+  cout << endl << "Contenido del vector:" << endl;
+  for (int i = 0; i < 10; i++) {
+    cout << *pt << " ";
+    pt++;
+  }
+  cout << endl;
+}
+
+void direccionesVector(int vector[10], int *pt) {
+  pt = &vector[0];
+  cout << endl << "Direcciones de memoria del vector:" << endl;
+  for (int i = 0; i < 10; i++) {
+    cout << *pt << " -> " << pt << endl;
+    pt++;
+  }
+}
+
+int main() {
+  // 1.- Crear un array con 10 elementos
+  int vector[10];
+  // 2.- Crear una función para generar números aleatorios entre 0 y 25
+  random(vector);
+  // 4.- Crear un puntero
+  int *pt;
+  // 5.- Imprimir el contenido del array usando el puntero
+  contenidoVector(vector, pt);
+  // 6.- Imprimir las direcciones del contenido del array usando el puntero.
+  direccionesVector(vector, pt);
+}
