@@ -12,20 +12,20 @@ using namespace std;
 
 void random(int vector[10]) {
   int randNumber;
-
-    //Semilla para que se generen los numeros aleatorios
-    srand(time(NULL));
-    
-    //Se llena el vector con numeros aleatorios
-    for(int i=0;i<10;i++)
-    {
-        randNumber=rand()%10+1;
-        vector[i]=randNumber;
-    }
+  // Semilla para que se generen los numeros aleatorios
+  srand(time(NULL));
+  // 3.- Llenar el array con 10 números aleatorios
+  for(int i=0;i<10;i++)
+  {
+      randNumber=rand()%10+1;
+      vector[i]=randNumber;
+  }
 }
 
 void contenidoVector(int vector[10], int *pt) {
+  // Se asigna al apuntador la primera dirección de memoria que ocupa el vector
   pt = &vector[0];
+  // Imprimo el contenido del vector utilizando aritmética de apuntadores
   cout << endl << "Contenido del vector:" << endl;
   for (int i = 0; i < 10; i++) {
     cout << *pt << " ";
@@ -35,7 +35,9 @@ void contenidoVector(int vector[10], int *pt) {
 }
 
 void direccionesVector(int vector[10], int *pt) {
+  // Se asigna al apuntador la primera dirección de memoria que ocupa el vector
   pt = &vector[0];
+  // Imprimo la dirección de memoria en donde se encuentra cada elemento del vector
   cout << endl << "Direcciones de memoria del vector:" << endl;
   for (int i = 0; i < 10; i++) {
     cout << *pt << " -> " << pt << endl;
