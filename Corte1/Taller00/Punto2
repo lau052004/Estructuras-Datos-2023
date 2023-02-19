@@ -1,0 +1,159 @@
+/*Ejercicios 02:
+    Se desea capturar los datos de los clientes para ser impreso en la factura.
+  Se requiere crear una estructura de datos, que encapsule los datos de los
+  usuarios. Se requiere que el uso de la estructura sea a través de punteros. Se
+  requiere imprimir las facturas en un fichero de texto.
+
+  PASOS:
+  1. - Crear estructura para capturar los datos
+       + Nombre de tipo String
+       + Apellido de tipo String
+       + Cedula de tipo long
+       + Celular de tipo long
+       + Cantidad de productos de tipo int
+       + Vector con el nombre de los productos de tipo string
+       + Vector paralelo al del nombre de los producto para guardar su precio de tipo int
+       + Total a pagar de tipo int
+  2. - Capturar información de los clientes y guardarla en un arreglo de tipo estructura usando apuntadores
+  3. - Imprimir la información que fue capturada y almacenada en el arreglo para verificar que sea correcta
+  4. - Guardar los datos capturados en un archivo de tipo texto usando apuntadores
+*/
+
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+// 1. - Crear estructura para capturar los datos
+struct cliente {
+  string nombre;
+  string apellido;
+  long cedula;
+  long celular;
+  int cantidadProductos;
+  string nombreProductos[50];
+  int precioProducto[50];
+  int totalPagar;
+};
+
+//  2. - Capturar información de los clientes y guardarla en un arreglo de tipo estructura usando apuntadores
+void llenarArreglo(cliente *pt, int cant, cliente clientes[50]) {
+  // Se asigna al apuntador la dirección en memoria de la primera posición del arreglo de clientes
+  pt = &clientes[0];
+  // Se crean 2 apuntadores - Cada uno se usa para poder recorrer los arreglos anidados de la estructura cliente "nombreProductos" y "PrecioProducto", respectivamente
+  string *ptNombre;
+  int *ptPrecio;
+  // Variable donde se calcula el precio total de la factura de acuerdo a los productos adquiridos por el cliente
+  float suma;
+
+  // Se captura la información de los clientes y se va almacenando en el arreglo "Clientes" usando el apuntador "pt"
+  for (int i = 0; i < cant; i++) {
+    suma = 0;
+    cout << "Cliente " << i + 1 << ":" << endl;
+    cout << "Nombre: ";
+    cin >> (*pt).nombre;
+    cout << "Apellido: ";
+    cin >> (*pt).apellido;
+    cout << "Cedula: ";
+    cin >> (*pt).cedula;
+    cout << "Celular: ";
+    cin >> (*pt).celular;
+
+    cout << "Cantidad de productos adquiridos: ";
+    cin >> (*pt).cantidadProductos;
+    ptNombre = &(*pt).nombreProductos[0];
+    ptPrecio = &(*pt).precioProducto[0];
+    for (int k = 0; k < (*pt).cantidadProductos; k++) {
+      cout << "Nombre del producto: ";
+      cin >> *ptNombre;
+      ptNombre++;
+      cout << "Precio del producto: ";
+      cin >> *ptPrecio;
+      suma = suma + *ptPrecio;
+      ptPrecio++;
+    }
+    (*pt).totalPagar = suma;
+    // Se le suma 1 al apuntador con el fin de que apunte a la siguiente dirección en memoria del arreglo
+    pt++;
+  }
+}
+
+// 3. - Imprimir la información que fue capturada y almacenada en el arreglo para verificar que sea correcta
+void imprimirInformacion(int cant, cliente clientes[50]) {
+  cout << endl << "----- INFORMACIÓN DE LOS CLIENTES QUE SE GUARDARÁ EN EL ARCHIVO -----" ;
+
+  // Se recorre el arreglo sin utilizar el apuntador con el fin de corroborar que el proceso realizado en la función "LlenarArreglo" fue correcto  
+  for (int i = 0; i < cant; i++) {
+    cout << endl << "Cliente " << i + 1 << endl;
+    cout << "Nombre: ";
+    cout << clientes[i].nombre << endl;
+    cout << "Apellido: ";
+    cout << clientes[i].apellido << endl;
+    cout << "Cedula: ";
+    cout << clientes[i].cedula << endl;
+    cout << "Celular: ";
+    cout << clientes[i].celular << endl;
+
+    cout << "Cantidad de productos adquiridos: " << clientes[i].cantidadProductos <<  endl;
+    for (int k = 0; k < clientes[i].cantidadProductos; k++) {
+      cout << "Nombre del producto: ";
+      cout << clientes[i].nombreProductos[k] << endl;
+      cout << "Precio del producto: ";
+      cout << clientes[i].precioProducto[k] << endl;
+    }
+    cout << "Total: " << clientes[i].totalPagar;
+  }
+}
+
+// 4. - Guardar los datos capturados en un archivo de tipo texto usando apuntadores
+void imprimirFacturas(cliente *pt, int cant, cliente clientes[50]) {
+  // Se asigna al apuntador la dirección en memoria de la primera posición del arreglo de clientes
+  pt = &clientes[0];
+   // Se crean 2 apuntadores - Cada uno se usa para poder recorrer los arreglos anidados de la estructura cliente "nombreProductos" y "PrecioProducto", respectivamente
+  string *ptNombre;
+  int *ptPrecio;
+  // Se crea la una variable con el nombre del archivo .txt que se va a escribir a partir de los datos del arreglo 
+  string fileName = "Sueldos.txt";
+  // Se declara un flujo de datos y se abre para poder escribir en el archivo
+  fstream archivoFacturas;
+  archivoFacturas.open(fileName, ios::out);
+
+  // Condición para verificar que el archivo se cree o se abra correctamente 
+  if (archivoFacturas.is_open()) {
+    // Se recorre el arreglo y se escribe en el archivo los datos de la factura para cada cliente utilizando aritmética de apuntadores
+    for (int h = 0; h < cant; h++) {
+      archivoFacturas << (*pt).nombre << " " << (*pt).apellido << endl;
+      archivoFacturas << "C.C " << (*pt).cedula << endl;
+      archivoFacturas << "+57 " << (*pt).celular << endl;
+      ptNombre = &(*pt).nombreProductos[0];
+      ptPrecio = &(*pt).precioProducto[0];
+      for (int k = 0; k < (*pt).cantidadProductos; k++) {
+        archivoFacturas << k + 1 << ". " << *ptNombre << "   $ " << *ptPrecio << endl;
+        ptNombre++;
+        ptPrecio++;
+      }
+      archivoFacturas << "Total:   $" << (*pt).totalPagar << endl;
+      pt++;
+    }
+    // Se cierra el flujo de datos
+    archivoFacturas.close();
+  } else {
+    cout << "NO ABRIO CORRECTAMENTE" << endl;
+  }
+}
+
+int main() {
+  int cant;
+  cliente clientes[50];
+  cliente *pt;
+
+  // Se pide la cantidad  de clientes que se desea ingresar en el sistema
+  cout << "Ingrese la cantidad de clientes que desea agregar al sistema: ";
+  cin >> cant;
+
+  // Función para capturar información de los clientes
+  llenarArreglo(pt, cant, clientes); 
+  // Función para imprimir contenido guardado en el arreglo por medio de la función "llenarArreglo"
+  imprimirInformacion(cant, clientes);
+  // Función para guardar los datos capturados en un archivo de tipo texto
+  imprimirFacturas(pt, cant, clientes);
+}
