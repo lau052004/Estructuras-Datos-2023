@@ -1,0 +1,6 @@
+a|fotografiar|roca|color bonito
+m|avanzar|4|metros
+m|girar|360|grados
+m|avanzar|3|metros
+m|girar|180|grados
+m|avanzar|2|metros

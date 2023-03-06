@@ -1,0 +1,4 @@
+roca|3|metros|4|5
+duna|6|metros|5|8
+hueco|8|metros|3|2
+bache|2|metros|4|4
