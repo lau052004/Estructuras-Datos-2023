@@ -1,0 +1,24 @@
+Comandos de movimiento: 
+avanzar
+4
+metros
+girar
+360
+grados
+avanzar
+3
+metros
+girar
+180
+grados
+avanzar
+2
+metros
+avanzar
+-100
+metros
+
+Comandos de analisis: 
+fotografiar
+roca
+color bonito

@@ -1,0 +1,5 @@
+crater|2|metros|2.0|2.0
+crater|2|metros|3.0|3.0
+monticulo|2|metros|6.0|8.0
+crater|5|metros|12.50|7.5
+duna|4|metros|18.00|14.00
