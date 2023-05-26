@@ -5,26 +5,19 @@ Este repositorio es un espacio creado para almacenar todas las actividades relac
 
 ### Aquí puedes encontrar las implementación de:
 
-💜 Estructuras lineales
-  - Pilas
-  - Colas
-  - Vectores
-  - Listas
+| Tema | Sub-tema |
+| --- | --- |
+| ` 💜 Estructuras lineales` | *Pilas - Colas - Vectores - Listas* |
+| ` 💛 Estructuras recurrentes` | Árboles binarios de búsqueda **(AVL)** - Árboles de partición del espacio **(QuadTree & KDTree)**|
+| ` 💚 Estructuras NO lineales` | Grafos |
+
+---
  
-💛 Estructuras recurrentes
-- Árboles binarios de búsqueda (AVL)
-- Árboles de partición del espacio (QuadTree & KDTree)
-
-💚 Estructuras NO lineales
-- Grafos
-
-
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=lau052004&layout=compact" />
 </a>
 
-
-### Lenguajes y herramientas ⛏️:
 ---
+### Lenguajes y herramientas ⛏️:
 <p align="left"> <a href="https://www.cprogramming.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/cpp/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> 
   
