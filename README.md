@@ -13,7 +13,7 @@ Este repositorio es un espacio creado para almacenar todas las actividades relac
 
 ---
  
-<a href="https://github.com/anuraghazra/github-readme-stats">
+<p align="center"> <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=lau052004&layout=compact" />
 </a>
 
